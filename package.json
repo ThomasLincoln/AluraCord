@@ -1,0 +1,32 @@
+{
+  "name": "aluracord",
+  "description": "Projeto feito na imersão alura",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasLincoln/aluracord.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^12.0.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "bugs": {
+    "url": "https://github.com/ThomasLincoln/aluracord/issues"
+  },
+  "homepage": "https://github.com/ThomasLincoln/aluracord#readme"
+}
