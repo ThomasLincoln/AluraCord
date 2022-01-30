@@ -1,6 +1,13 @@
 # aluracord
 Projeto feito na imersão alura
 
+
+# link para o site
+
+https://aluracord-gamma-ashen.vercel.app
+
+
+
 # Anotações
 
 * Estilos feitos em um elemento, irão ficar apenas nele, com isso facilita a vida de não ter que ficar dando nome para as coisas.
