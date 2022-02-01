@@ -1,6 +1,7 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import appConfig from '../config.json';
 
+// isso aqui é meio q um estilo global q vai aplicar em tudo, geralmente usam isso pra resetar o estilo da página
 function GlobalStyle() {
   return (
     <style global jsx>{`
@@ -29,7 +30,7 @@ function GlobalStyle() {
     `}</style>
   );
 }
-
+//isso aqui é um h1 q usam como título
 function Titulo(props) {
   const Tag = props.tag || 'h1';
   return (
@@ -59,20 +60,24 @@ function Titulo(props) {
 // }
 // export default HomePage
 
+
+//função que gera a página inicial
 export default function PaginaInicial() {
-  const username = 'peas';
+  const username = 'ThomasLincoln';
 
   return (
     <>
-      <GlobalStyle />
+      {/* Aqui chamamos o estilo global citado antes */}
+      <GlobalStyle/>
+      {/* essa primeira caixa é o background*/}
       <Box
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          backgroundColor: appConfig.theme.colors.primary[500],
-          backgroundImage: 'url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)',
+          backgroundImage: 'url(https://data.1freewallpapers.com/download/green-hair-izuku-midoriya-deku-yellow-background-my-hero-academia-1280x800.jpg)',
           backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
         }}
       >
+        {/* essa segunda caixa é o container q fica no centro do cite */}
         <Box
           styleSheet={{
             display: 'flex',
@@ -85,7 +90,7 @@ export default function PaginaInicial() {
             width: '100%', maxWidth: '700px',
             borderRadius: '5px', padding: '32px', margin: '16px',
             boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-            backgroundColor: appConfig.theme.colors.neutrals[700],
+            backgroundColor: appConfig.theme.colors.neutrals[900],
           }}
         >
           {/* Formulário */}
@@ -100,12 +105,12 @@ export default function PaginaInicial() {
             <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
               {appConfig.name}
             </Text>
-
+            {/* Isso aqui é o input de texto */}
             <TextField
               fullWidth
               textFieldColors={{
                 neutral: {
-                  textColor: appConfig.theme.colors.neutrals[200],
+                  textColor: appConfig.theme.colors.neutrals[100],
                   mainColor: appConfig.theme.colors.neutrals[900],
                   mainColorHighlight: appConfig.theme.colors.primary[500],
                   backgroundColor: appConfig.theme.colors.neutrals[800],
@@ -124,10 +129,11 @@ export default function PaginaInicial() {
               }}
             />
           </Box>
-          {/* Formulário */}
+          {/* fim do Formulário */}
 
 
           {/* Photo Area */}
+          {/* Caixa da foto */}
           <Box
             styleSheet={{
               display: 'flex',
@@ -143,6 +149,7 @@ export default function PaginaInicial() {
               minHeight: '240px',
             }}
           >
+            {/* Imagem */}
             <Image
               styleSheet={{
                 borderRadius: '50%',
@@ -150,6 +157,7 @@ export default function PaginaInicial() {
               }}
               src={`https://github.com/${username}.png`}
             />
+            {/* Texto */}
             <Text
               variant="body4"
               styleSheet={{
