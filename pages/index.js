@@ -1,35 +1,8 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import React from 'react';
 import appConfig from '../config.json';
+import {useRouter} from 'next/router';
 
-// isso aqui é meio q um estilo global q vai aplicar em tudo, geralmente usam isso pra resetar o estilo da página
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */ 
-      html, body, #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */ 
-    `}</style>
-  );
-}
 //isso aqui é um h1 q usam como título
 function Titulo(props) {
   const Tag = props.tag || 'h1';
@@ -63,12 +36,13 @@ function Titulo(props) {
 
 //função que gera a página inicial
 export default function PaginaInicial() {
-  const username = 'ThomasLincoln';
+  // const username = 'ThomasLincoln';
+  const [username, setUsername]= React.useState('');
+  const roteamento = useRouter()
+
 
   return (
     <>
-      {/* Aqui chamamos o estilo global citado antes */}
-      <GlobalStyle/>
       {/* essa primeira caixa é o background*/}
       <Box
         styleSheet={{
@@ -96,6 +70,12 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit ={function(informacoes_do_evento){
+              informacoes_do_evento.preventDefault()
+              console.log("o usario submetou o form")
+              roteamento.push('/chat')
+              // window.location.href = '/chat';
+            }}
             styleSheet={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -106,6 +86,11 @@ export default function PaginaInicial() {
               {appConfig.name}
             </Text>
             {/* Isso aqui é o input de texto */}
+            {/* <input
+              type="text"
+              //essa função é chamada quando o usuário digita
+              
+            /> */}
             <TextField
               fullWidth
               textFieldColors={{
@@ -115,6 +100,14 @@ export default function PaginaInicial() {
                   mainColorHighlight: appConfig.theme.colors.primary[500],
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
+              }}
+              value={username}
+              onChange = {function(informacoes_do_evento){
+                console.log("usuario digitou", informacoes_do_evento.target.value)
+                //onde ta o valor
+                const valor = informacoes_do_evento.target.value
+                //trocar o valor
+                setUsername(valor)
               }}
             />
             <Button

@@ -6,6 +6,13 @@
 
 ## Coisas para fazer e pesquisar
 
+* useState
+* useRouter
+* onChange
+* onSubmit
+* Rever os conteúdos da aula
+* Desafios
+
 
 ## Skynex ui
 
