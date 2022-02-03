@@ -1,21 +1,22 @@
-import { Box, Button, Text, TextField, Image } from '@skynexui/components';
-import React from 'react';
-import appConfig from '../config.json';
-import {useRouter} from 'next/router';
+import { Box, Button, Text, TextField, Image } from "@skynexui/components";
+import React from "react";
+import appConfig from "../config.json";
+import { useRouter } from "next/router";
+import { replaceBasePath } from "next/dist/server/router";
 
 //isso aqui é um h1 q usam como título
 function Titulo(props) {
-  const Tag = props.tag || 'h1';
+  const Tag = props.tag || "h1";
   return (
     <>
       <Tag>{props.children}</Tag>
       <style jsx>{`
-            ${Tag} {
-                color: ${appConfig.theme.colors.neutrals['000']};
-                font-size: 24px;
-                font-weight: 600;
-            }
-            `}</style>
+        ${Tag} {
+          color: ${appConfig.theme.colors.neutrals["000"]};
+          font-size: 24px;
+          font-weight: 600;
+        }
+      `}</style>
     </>
   );
 }
@@ -33,12 +34,12 @@ function Titulo(props) {
 // }
 // export default HomePage
 
-
 //função que gera a página inicial
 export default function PaginaInicial() {
   // const username = 'ThomasLincoln';
-  const [username, setUsername]= React.useState('');
-  const roteamento = useRouter()
+  const [username, setUsername] = React.useState("");
+  const roteamento = useRouter();
+
 
 
   return (
@@ -46,43 +47,62 @@ export default function PaginaInicial() {
       {/* essa primeira caixa é o background*/}
       <Box
         styleSheet={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          backgroundImage: 'url(https://data.1freewallpapers.com/download/green-hair-izuku-midoriya-deku-yellow-background-my-hero-academia-1280x800.jpg)',
-          backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundImage:
+            "url(https://data.1freewallpapers.com/download/green-hair-izuku-midoriya-deku-yellow-background-my-hero-academia-1280x800.jpg)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundBlendMode: "multiply",
         }}
       >
         {/* essa segunda caixa é o container q fica no centro do cite */}
         <Box
           styleSheet={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
             flexDirection: {
-              xs: 'column',
-              sm: 'row',
+              xs: "column",
+              sm: "row",
             },
-            width: '100%', maxWidth: '700px',
-            borderRadius: '5px', padding: '32px', margin: '16px',
-            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
+            width: "100%",
+            maxWidth: "700px",
+            borderRadius: "5px",
+            padding: "32px",
+            margin: "16px",
+            boxShadow: "0 2px 10px 0 rgb(0 0 0 / 20%)",
             backgroundColor: appConfig.theme.colors.neutrals[900],
           }}
         >
           {/* Formulário */}
           <Box
             as="form"
-            onSubmit ={function(informacoes_do_evento){
-              informacoes_do_evento.preventDefault()
-              console.log("o usario submetou o form")
-              roteamento.push('/chat')
+            onSubmit={function (informacoes_do_evento) {
+              informacoes_do_evento.preventDefault();
+              console.log("o usario submetou o form");
+              roteamento.push("/chat");
               // window.location.href = '/chat';
             }}
             styleSheet={{
-              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-              width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: { xs: "100%", sm: "50%" },
+              textAlign: "center",
+              marginBottom: "32px",
             }}
           >
             <Titulo tag="h2">Boas vindas de volta!</Titulo>
-            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
+            <Text
+              variant="body3"
+              styleSheet={{
+                marginBottom: "32px",
+                color: appConfig.theme.colors.neutrals[300],
+              }}
+            >
               {appConfig.name}
             </Text>
             {/* Isso aqui é o input de texto */}
@@ -102,17 +122,28 @@ export default function PaginaInicial() {
                 },
               }}
               value={username}
-              onChange = {function(informacoes_do_evento){
-                console.log("usuario digitou", informacoes_do_evento.target.value)
+              onChange={function (informacoes_do_evento) {
+                console.log(
+                  "usuario digitou",
+                  informacoes_do_evento.target.value
+                );
                 //onde ta o valor
-                const valor = informacoes_do_evento.target.value
+                const valor = informacoes_do_evento.target.value;
                 //trocar o valor
-                setUsername(valor)
+                setUsername(valor);
+
+                
+                fetch(`https://api.github.com/users/${username}`)
+                .then((resp)=> resp.json())
+                .then(function (){
+                  console.log(resp)
+                })
+                .catch(function () {});
               }}
             />
             <Button
-              type='submit'
-              label='Entrar'
+              type="submit"
+              label="Entrar"
               fullWidth
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals["000"],
@@ -124,44 +155,47 @@ export default function PaginaInicial() {
           </Box>
           {/* fim do Formulário */}
 
-
           {/* Photo Area */}
           {/* Caixa da foto */}
           <Box
             styleSheet={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: '200px',
-              padding: '16px',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              maxWidth: "200px",
+              padding: "16px",
               backgroundColor: appConfig.theme.colors.neutrals[800],
-              border: '1px solid',
+              border: "1px solid",
               borderColor: appConfig.theme.colors.neutrals[999],
-              borderRadius: '10px',
+              borderRadius: "10px",
               flex: 1,
-              minHeight: '240px',
+              minHeight: "240px",
             }}
           >
             {/* Imagem */}
-            <Image
-              styleSheet={{
-                borderRadius: '50%',
-                marginBottom: '16px',
-              }}
-              src={`https://github.com/${username}.png`}
-            />
+            {username.length > 2 && (
+              <Image
+                styleSheet={{
+                  borderRadius: "50%",
+                  marginBottom: "16px",
+                }}
+                src={`https://github.com/${username}.png`}
+              />
+            )}
             {/* Texto */}
-            <Text
-              variant="body4"
-              styleSheet={{
-                color: appConfig.theme.colors.neutrals[200],
-                backgroundColor: appConfig.theme.colors.neutrals[900],
-                padding: '3px 10px',
-                borderRadius: '1000px'
-              }}
-            >
-              {username}
-            </Text>
+            {username.length > 2 && (
+              <Text
+                variant="body4"
+                styleSheet={{
+                  color: appConfig.theme.colors.neutrals[200],
+                  backgroundColor: appConfig.theme.colors.neutrals[900],
+                  padding: "3px 10px",
+                  borderRadius: "1000px",
+                }}
+              >
+                {username}
+              </Text>
+            )}
           </Box>
           {/* Photo Area */}
         </Box>
