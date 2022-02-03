@@ -38,6 +38,7 @@ function Titulo(props) {
 export default function PaginaInicial() {
   // const username = 'ThomasLincoln';
   const [username, setUsername] = React.useState("");
+  const [id, setId] = React.useState("");
   const roteamento = useRouter();
 
 
@@ -123,22 +124,22 @@ export default function PaginaInicial() {
               }}
               value={username}
               onChange={function (informacoes_do_evento) {
-                console.log(
-                  "usuario digitou",
-                  informacoes_do_evento.target.value
-                );
-                //onde ta o valor
-                const valor = informacoes_do_evento.target.value;
-                //trocar o valor
-                setUsername(valor);
-
-                
-                fetch(`https://api.github.com/users/${username}`)
-                .then((resp)=> resp.json())
-                .then(function (){
-                  console.log(resp)
+                  //onde ta o valor
+                  const valor = informacoes_do_evento.target.value;
+                  //trocar o valor
+                  setUsername(valor);
+                  
+                  fetch(`https://api.github.com/users/${valor}`)
+                  .then(function (res) {
+                    res.json().then(function (data) {
+                      console.log(data.id);
+                      setId(data.id)
+                  });
                 })
-                .catch(function () {});
+                .catch(function (err) {
+                  console.error("Não foi possível achar a informação", err);
+                });
+
               }}
             />
             <Button
@@ -193,7 +194,7 @@ export default function PaginaInicial() {
                   borderRadius: "1000px",
                 }}
               >
-                {username}
+                {username} Id: {id}
               </Text>
             )}
           </Box>
