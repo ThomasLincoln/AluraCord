@@ -41,8 +41,6 @@ export default function PaginaInicial() {
   const [id, setId] = React.useState("");
   const roteamento = useRouter();
 
-
-
   return (
     <>
       {/* essa primeira caixa é o background*/}
@@ -124,22 +122,21 @@ export default function PaginaInicial() {
               }}
               value={username}
               onChange={function (informacoes_do_evento) {
-                  //onde ta o valor
-                  const valor = informacoes_do_evento.target.value;
-                  //trocar o valor
-                  setUsername(valor);
-                  
-                  fetch(`https://api.github.com/users/${valor}`)
+                //onde ta o valor
+                const valor = informacoes_do_evento.target.value;
+                //trocar o valor
+                setUsername(valor);
+
+                fetch(`https://api.github.com/users/${valor}`)
                   .then(function (res) {
                     res.json().then(function (data) {
                       console.log(data.id);
-                      setId(data.id)
+                      setId(data.id);
+                    });
+                  })
+                  .catch(function (err) {
+                    console.error("Não foi possível achar a informação", err);
                   });
-                })
-                .catch(function (err) {
-                  console.error("Não foi possível achar a informação", err);
-                });
-
               }}
             />
             <Button
@@ -194,9 +191,22 @@ export default function PaginaInicial() {
                   borderRadius: "1000px",
                 }}
               >
-                {username} Id: {id}
+                {username}
               </Text>
             )}
+            {username.length > 2 && (
+            <Text
+              variant="body4"
+              styleSheet={{
+                color: appConfig.theme.colors.neutrals[200],
+                backgroundColor: appConfig.theme.colors.neutrals[900],
+                padding: "3px 10px",
+                borderRadius: "1000px",
+              }}
+            >
+              Id: {id}
+            </Text>
+            )} 
           </Box>
           {/* Photo Area */}
         </Box>
