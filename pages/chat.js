@@ -2,6 +2,7 @@ import { Box, Text, TextField, Image, Button } from "@skynexui/components";
 import React from "react";
 import appConfig from "../config.json";
 
+
 export default function ChatPage() {
   const [mensagem, setMensagem] = React.useState("");
   const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
@@ -26,12 +27,10 @@ export default function ChatPage() {
       texto: novaMensagem,
       id: listaDeMensagens.length,
     };
-    setListaDeMensagens([
-        mensagem,
-        ...listaDeMensagens, 
-    ]);
+    setListaDeMensagens([mensagem, ...listaDeMensagens]);
     setMensagem("");
   }
+
   return (
     <Box
       styleSheet={{
@@ -92,7 +91,6 @@ export default function ChatPage() {
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
                   event.preventDefault();
-                  console.log(event);
                   handleNovaMensagem(mensagem);
                 }
               }}
@@ -104,13 +102,25 @@ export default function ChatPage() {
                 resize: "none",
                 borderRadius: "5px",
                 padding: "6px 8px",
-                backgroundolor: appConfig.theme.colors.neutrals[800],
+                backgroundColor: appConfig.theme.colors.neutrals[800],
                 marginRight: "12px",
                 color: appConfig.theme.colors.neutrals[200],
               }}
             />
+            <Button
+              variant="tertiary"
+              colorVariant="neutral"
+              label="Enviar"
+              onClick={function () {
+                handleNovaMensagem(mensagem);
+              }}
+              styleSheet={{
+                marginBottom: "6px",
+                padding: "10px 20px",
+                backgroundColor: appConfig.theme.colors.neutrals[800],
+              }}
+            />
           </Box>
-          {/*  */}
         </Box>
       </Box>
     </Box>
@@ -142,12 +152,12 @@ function Header() {
 }
 
 function MessageList(props) {
-  console.log(props.listaDeMensagens);
   return (
     <Box
       tag="ul"
       styleSheet={{
         overflow: "scroll",
+        overflowX: "hidden",
         display: "flex",
         flexDirection: "column-reverse",
         flex: 1,
@@ -195,6 +205,15 @@ function MessageList(props) {
               >
                 {new Date().toLocaleDateString()}
               </Text>
+              <Button
+                variant="tertiary"
+                colorVariant="neutral"
+                label="X"
+                styleSheet={{
+                  padding: "5px 5px",
+                  backgroundColor: appConfig.theme.colors.neutrals[800],
+                }}
+              />
             </Box>
             {mensagem.texto}
           </Text>
