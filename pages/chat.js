@@ -7,20 +7,12 @@ export default function ChatPage() {
   const [mensagem, setMensagem] = React.useState("");
   const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
 
-  // Sua lógica vai aqui
   /* 
-    como user
-    - Usuário digita no campo
-    - Aperta enter para enviar
-    - Ter que adcionar o texto na listagem
-    
-    como dev[]
-    TODO: [X] Criar campo
-    TODO: [x] usar onChange, usar useState (usar um if para caso seja enter para limpar a variável)
-    TODO: [] Lista de mensagens
-    */
-  // ./Sua lógica vai aqui
-
+    ? fazer com que as mensagems possam ser deletadas.
+      TODO Primeiro passo: conseguir capturar a lista de mensagens
+      TODO Segundo passo: Detectar a mensagem selecionada (primeiro pegar pelo index 0)
+      TODO Terceiro passo: conseguir acessar a lista de mensagens na function do botão
+  */
   function handleNovaMensagem(novaMensagem) {
     const mensagem = {
       from: "Caio Peternela",
