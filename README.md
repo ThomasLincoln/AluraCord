@@ -4,7 +4,8 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/ThomasLincoln/aluracord)
 ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/ThomasLincoln/aluracord)
 ![Static Badge](https://img.shields.io/badge/for-study-brightgreen?color=purple)
-![GitHub top language](https://img.shields.io/github/languages/top/ThomasLincoln/aluracord)
+![GitHub top language](https://img.shields.io/github/languages/top/ThomasLincoln/aluracord)![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 
 > This project was made in the "Imersão Alura", this is a chat, do you log using the User of Github.
